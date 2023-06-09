@@ -130,6 +130,15 @@ async function run() {
       res.send(result);
     });
 
+    // get all instructor:
+    app.get("/allUsers/:role", async (req, res) => {
+      const roles = await usersCollection.find({
+          role: req.params.role,
+        })
+        .toArray();
+      res.send(roles);
+    });
+
     // Admin:
     app.patch("/users/admin/:id", async (req, res) => {
       const id = req.params.id;
@@ -158,6 +167,15 @@ async function run() {
       res.send(result);
     });
 
+    // get all classes:
+    app.get("/allClasses/:status", async (req, res) => {
+      const result = await classesCollection.find({
+          status: req.params.status,
+        })
+        .toArray();
+      res.send(result);
+    });
+
     // classes related apis:
     app.post("/classes", async (req, res) => {
       const newClass = req.body;
@@ -176,7 +194,7 @@ async function run() {
     })
 
     app.get("/classes",verifyJWT, verifyAdmin, async (req, res) => {
-      const result = await classesCollection.find(query).toArray();
+      const result = await classesCollection.find().toArray();
       res.send(result);
     });
     
