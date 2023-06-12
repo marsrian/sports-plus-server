@@ -213,7 +213,6 @@ async function run() {
       res.send(result);
     });
 
-  
     // student get class data from cart:
     app.get("/selectClass", verifyJWT, async (req, res) => {
       const email = req.query.email;
