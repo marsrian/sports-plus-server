@@ -232,7 +232,6 @@ async function run() {
       res.send(result);
     });
 
-
     // student get selected class data from cart:
     app.get("/selectClass/:id", async (req, res) => {
       const id = req.params.id;
